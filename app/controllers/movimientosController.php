@@ -1,5 +1,6 @@
 <?php 
-class homeController extends Controller{
+
+class movimientosController extends Controller{
     function __construct()
     {
         
@@ -9,10 +10,10 @@ class homeController extends Controller{
    
             $data =
             [
-                //'title' => 'CoatlX Framework',
+                'title' => 'Mis Movimientos',
                 'bg' => 'dark'
             ];
-            View::render('coatlx', $data);
+            View::render('index', $data);
          /*   print_r($data);
             $data = to_Object($data);
             echo $data->id;*/
@@ -32,3 +33,4 @@ class homeController extends Controller{
 
    
 }
+ 
