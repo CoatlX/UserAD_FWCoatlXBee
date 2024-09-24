@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,14 +13,14 @@
 </head>
 <body class="<?php echo isset($d->bg) && $d->bg === 'dark' ? 'bg-dark' : 'bg-light' ?>" 
 style="padding: 50px 0px;">
-    <!-- Fin inc:header.php -->
-    <div class = "container">
-    <div class="row justify-content-md-center">
-        <div class="col-xl-12 text-center position-absolute end-0 offset-xl-3">
-            <img src="<?php echo IMAGES.'coatlx-logo-mod.png' ?> " alt="CoatlX White" 
-            style = "width: 200px;">
-            <h2 class="text-white mt-1 mb-3"><span class="text-danger">CoatlX</span> Framework </h2>
+   
+<div class = "container maxwidthContainer " style="padding-bottom: 200px;">
+        <div class="row row d-flex justify-content-center">
+            <div class="col-xl-12 text-center position-absolute end-0 offset-xl-3">
+                <img src="<?php echo IMAGES.'coatlx-logo-mod.png' ?> " alt="CoatlX White" 
+                style = "width: 200px;">
+                <h2 class="text-white mt-1 mb-3" ><span class="text-danger">CoatlX</span> Framework </h2>
+            </div>
         </div>
-    </div>
-    </div>
+</div>
        
