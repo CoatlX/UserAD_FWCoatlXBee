@@ -4,7 +4,7 @@
         <div class="col-6 text-center offset-xl-3">
             <img src="<?php echo IMAGES.'coatlx-logo-mod.png' ?> " alt="CoatlX White" 
             style = "width: 200px;">
-            <h2 class="text-white mt-1 mb-3"><span class="text-danger">CoatlX</span> Framework</h2>
+            <h2 class="text-white mt-1 mb-3"><span class="text-danger">CoatlX</span> Framework</h2>-->
             <p class="text-center text-white"> Un framework hecho en casa, con pasión y mucho cariño.
                 Ligero, rápido y personalizable. Úsalo como gustes, en tus proyectos personales o
                 profesionales. 
@@ -22,6 +22,7 @@
                     <p class="text-white">Desarrollado con <i class="fas fa-heart text-danger"></i> por 
                 <a href="http://bit.ly/udemy_joystick" class="text-white">Joystick - Gracias Bobby</a></p>
                 </div>
+            </div>
         </div>
     </div>
 </div>

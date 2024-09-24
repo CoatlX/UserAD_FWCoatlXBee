@@ -3,7 +3,8 @@
 class movimientosController extends Controller{
     function __construct()
     {
-        
+        $db = new Db();
+        $db->connect();
     }
 
     function index(){
