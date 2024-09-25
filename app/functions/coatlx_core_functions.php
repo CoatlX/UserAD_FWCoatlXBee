@@ -19,21 +19,21 @@ function now(){//Fecha actual
     return date('Y-m-d H-i-s');
 }
 function json_output($json, $die=true){
-    header('Access-Control-Allow-Origin: *');
-    header('Content-type: application/json;charset=utf-8');
+    header('Access-Control-Allow-Origin: *');//Acceso sin restricción
+    header('Content-type: application/json;charset=utf-8');//Decirle que la información va a ser de tipo json
 
     if(is_array($json)){
-        $json = json_encode($json);
+        $json = json_encode($json);//SI es un arreglo, lo convierte a json encode o string
     }
     echo $json;
-    if($die){
+    if($die){//Si está setteado $die a true, se termina y regresa true
         die;
     }
 return true;
 
 }
 function json_build($status=200, $data= null, $msg = ''){
-    if(empty($msg || $msg=='')){
+    if(empty($msg) || $msg==''){//Si el mensaje está vacío entra al switch y determina dependiendo el código que reciba
         switch($status){
             case 200:
                 $msg = 'OK';
@@ -59,9 +59,10 @@ function json_build($status=200, $data= null, $msg = ''){
             default:
                 break;
         }
-    }http_response_code($status);
-$json=
+    }
+http_response_code($status);
 
+$json=
 [
     'status' => $status,
     'error' => false,
@@ -74,5 +75,5 @@ $error_codes = [400,403,404,405,500];
 if(in_array($status, $error_codes)){
     $json['error']= true;
 }
-return json_encode($json);
+return json_encode($json);//Regresa nuestro json formateado
 }

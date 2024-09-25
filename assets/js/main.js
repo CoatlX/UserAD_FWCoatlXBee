@@ -5,7 +5,7 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
     
     //Waitme https://vadimsva.github.io/waitMe/ descargar - waitme.min .css y .js en assests/pulgins/waitme
 
-$('body').waitMe();
+//$('body').waitMe(); //Muestra de uso de waitMe
     //Funciones C R U D
     //Create un movimiento
     function coatlx_add_movement(event){
