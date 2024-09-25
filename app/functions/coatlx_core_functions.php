@@ -77,3 +77,19 @@ if(in_array($status, $error_codes)){
 }
 return json_encode($json);//Regresa nuestro json formateado
 }
+
+function get_module($view,$data=[]){
+    $file_to_include = MODULES.$view.'Module.php';
+    $output = '';
+
+    //Por si queremos trabajar con objeto
+
+    $d = to_object($data);
+    if(!is_file($file_to_include)){
+        return false;
+    }
+    ob_start();
+    require_once $file_to_include;
+    $output = ob_get_clean();
+    return $output;
+}

@@ -16,7 +16,7 @@ class movementModel extends Model{
      */
     public function add(){
     
-        $sql = 'INSERT INTO opciones (id, opcion, val, created_at)
+        $sql = 'INSERT INTO options (id, opcion, val, created_at)
         VALUES (:id, :opcion, :val, :created_at)';
         $data =
         [
@@ -34,7 +34,7 @@ class movementModel extends Model{
 
     public function all()
     {
-        $sql = 'SELECT * FROM opciones ORDER BY id DESC';     
+        $sql = 'SELECT * FROM options ORDER BY id DESC';     
         try {
             return ($rows = parent::query($sql)) ? $rows : false;
         } catch (Exception $e) {
@@ -43,7 +43,7 @@ class movementModel extends Model{
     }
 
     public function one(){
-        $sql = 'SELECT v* FROM opciones WHERE opcion=:opcion LIMIT 1';
+        $sql = 'SELECT v* FROM options WHERE opcion=:opcion LIMIT 1';
         try {
             return ($rows = parent::query($sql,['opcion'=>$this->opcion])) ? $rows[0]['val'] : false;
         } catch (Exception $e) {
@@ -52,7 +52,7 @@ class movementModel extends Model{
     }
 
     public function update(){
-        $sql = 'UPDATE opciones SET val=:val WHERE opcion=:opcion';
+        $sql = 'UPDATE options SET val=:val WHERE opcion=:opcion';
         $data =
         [
             'opcion'     => $this->opcion,
@@ -67,7 +67,7 @@ class movementModel extends Model{
 
     public function delete(){
 
-        $sql = 'DELETE FROM opciones WHERE opcion=:opcion LIMIT 1';
+        $sql = 'DELETE FROM options WHERE opcion=:opcion LIMIT 1';
 
             try {
                 return ($rows = parent::query($sql ,['opcion' => $this->opcion])) ? true : false;

@@ -19,7 +19,7 @@ public $updated_at;
 
 public function add(){
 
-    $sql = 'INSERT INTO movimientos (type, description, amount, created_at)
+    $sql = 'INSERT INTO movements (type, description, amount, created_at)
     VALUES (:type, :description, :amount, :created_at)';
     $data =
     [
@@ -39,7 +39,7 @@ public function add(){
 public function all()
 {
     $sql = 'SELECT *,
-    (SELECT COUNT(id) FROM movimientos) AS total,
+    (SELECT COUNT(id) FROM movements) AS total,
     (SELECT SUM(amount) FROM movimientos WHERE type = "income") AS total_incomes,
     (SELECT SUM(amount) FROM movimientos WHERE type = "expense") AS total_expenses
     FROM movimientos
@@ -52,7 +52,7 @@ public function all()
 }
 
 public function one(){
-    $sql = 'SELECT * FROM movimientos WHERE id=:id LIMIT 1';
+    $sql = 'SELECT * FROM movements WHERE id=:id LIMIT 1';
     try {
         return ($rows = parent::query($sql, ['id' => $this->id])) ? $rows[0] : false;
     } catch (Exception $e) {
@@ -61,7 +61,7 @@ public function one(){
 }
 
 public function update(){
-    $sql = 'UPDATE movimientos SET type=:type, description=:description, amount=:amount, 
+    $sql = 'UPDATE movements SET type=:type, description=:description, amount=:amount, 
     created_at=:created_at WHERE id=:id';
     $data =
     [
@@ -79,7 +79,7 @@ public function update(){
 
 public function delete(){
 
-    $sql = 'DELETE FROM movimientos WHERE id=:id LIMIT 1';
+    $sql = 'DELETE FROM movements WHERE id=:id LIMIT 1';
     $data =
     [
         'id' => $this->id
