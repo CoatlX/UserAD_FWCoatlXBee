@@ -71,35 +71,34 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
     //Read un movimiento
     coatlx_get_movements();
     function coatlx_get_movements(){
-        var wrapper = $('coatlx_wrapper_movements');//Se crea del bloque que conforma la segunda columna de los movimientos del indexView
-        hook = 'coatlx_hook';
-        action = 'load';
+        var wrapper = $('.coatlx_wrapper_movements'),//Se crea del bloque que conforma la segunda columna de los movimientos del indexView
+        hook        = 'coatlx_hook',
+        action      = 'load';
 
         $.ajax({
-
-            url: 'ajax/coatlx_get_movements',
-            type: 'POST',
+            url     : 'ajax/coatlx_get_movements',
+            type    : 'POST',
             dataType: 'json',
-            cache: false,
-            data: {
+            cache   : false,
+            data    : {
                 hook, action
             },
             beforeSend: function(){
                 wrapper.waitMe();
             }
-         }).done(function(res){
-            if(res.status===200){
-                wrapper.html(res.data);
+         }).done(function(respuesta){
+            if(respuesta.status === 200){
+                wrapper.html(respuesta.data);
             }else{
-                toastr.error(res.msg,'Valió!');
+                toastr.error(respuesta.msg,'Valió!');
+                wrapper.html('');
             }
-            
          }).fail(function(err) {
-            toastr.error('Hubo un error en la petición', 'Valió!')
+           // toastr.error('Hubo un error en la petición', 'Valiósss!')////////
             wrapper.html('');
          }).always(function(){
             wrapper.waitMe('hide');
-         })
+         });
     }
     //Update movimiento
     function coatlx_update_movements(){

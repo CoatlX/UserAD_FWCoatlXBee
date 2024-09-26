@@ -46,11 +46,11 @@
         try {
             $movements = new movementModel();
             $movs = $movements->all();
-           $data = get_module('movements', $movs);
-           json_output(json_build(200 , $data));
+            $data = get_module('movements', $movs);
+            json_output(json_build(200 , $data));
            
            } catch (Exception $e) {
-            json_output(json_build(400 , null, $e->getMessage()));
+            json_output(json_build(400 , $e->getMessage()));
            }
            //json_output(json_build(200));
        

@@ -48,14 +48,14 @@ class Db{
         $query = $link->prepare($sql);
 
             //Esta condición no manda errores en el query, sintaxis, no hay DB etc.
-        if(!$query->execute($params)){
+      /*  if(!$query->execute($params)){
             $link->rollBack();
             $error =  $query->errorInfo();//Regresa un array con el error
             //Index 0 Tipo de error
             //Index 1 código de error
             //Index 2 Mensaje de error al usuario
             throw new Exception($error[2]);//Se manda sólo el mensaje de error
-        }
+        }*/
         //Manejar el tipo de consulta
 
         if(strpos($sql, 'SELECT')!== false){

@@ -45,7 +45,7 @@ public function all()
     FROM movimientos
     ORDER BY id DESC';
     try {
-        return ($rows = parent::query($sql)) ? $rows : false;
+        return ($rows = parent::query($sql,'')) ? $rows : false;
     } catch (Exception $e) {
         throw $e;
     }

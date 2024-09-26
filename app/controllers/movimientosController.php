@@ -12,7 +12,7 @@ class movimientosController extends Controller{
             $data =
             [
                 'title' => 'Mis Movimientos',
-                'bg' => 'dar'
+                'bg' => 'dark'
             ];
             View::render('index', $data);
          /*   print_r($data);

@@ -3,7 +3,7 @@ function en_core(){
     return 'ESTOY DENTRO DE CORE FUNCTIONS';
 }
 
-function to_Object($array){
+function to_object($array){
 
     return json_decode(json_encode($array));
     //json_encode($array); Convierte un arreglo en formato json
@@ -62,6 +62,7 @@ function json_build($status=200, $data= null, $msg = ''){
     }
 http_response_code($status);
 
+
 $json=
 [
     'status' => $status,
@@ -78,18 +79,20 @@ if(in_array($status, $error_codes)){
 return json_encode($json);//Regresa nuestro json formateado
 }
 
-function get_module($view,$data=[]){
-    $file_to_include = MODULES.$view.'Module.php';
-    $output = '';
-
+function get_module($view, $data = [] ){
+    //$view es el nombre del archivo y dta es la info que vamos a cargar
+    $file_to_include = MODULES.$view.'Module.php'; ///templates/modules/$view+Module.php
+   
+    $output = '';//Almacena todo el string que se va a almacenar
     //Por si queremos trabajar con objeto
-
     $d = to_object($data);
-    if(!is_file($file_to_include)){
+
+
+    if(!is_file($file_to_include)){//Valida si existe el archivo
         return false;
     }
-    ob_start();
+    ob_start(); //Almacena en el buffer del sitio
     require_once $file_to_include;
-    $output = ob_get_clean();
+    $output = ob_get_clean(); //Todo el ouput de guarda como string y se regresa
     return $output;
 }
