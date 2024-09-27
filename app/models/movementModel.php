@@ -61,10 +61,11 @@ public function one(){
 }
 
 public function update(){
-    $sql = 'UPDATE movements SET type=:type, description=:description, amount=:amount, 
-    created_at=:created_at WHERE id=:id';
+    $sql = 'UPDATE movements SET type = :type, description = :description, amount = :amount, 
+    created_at = :created_at WHERE id = :id';
     $data =
     [
+        'id'           =>$this->id,
         'type'        => $this->type,
         'description' => $this->description,
         'amount'      => (float)$this->amount,

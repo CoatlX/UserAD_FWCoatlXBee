@@ -4,8 +4,9 @@
                     </h4>
                     <ul class="list-group mb-3">
                         <?php foreach ($d as $mov): ?>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed 
-                            <?php echo $mov->type === 'income' ? '' : 'bg-light';?> coatlx_movement" data-id="<?php echo $mov->id; ?>">
+                            <li class="coatlx_movement list-group-item d-flex justify-content-between lh-condensed 
+                            <?php echo $mov->type === 'income' ? '' : 'bg-light';?> " 
+                            data-id="<?php echo $mov->id;?>">
                             <div class="text-success">
                                 <h6 class="my-0 <?php echo $mov->type === 'income' ? 'text-success' : 'text-danger';?>"
                                 ><?php echo $mov->type === 'income' ? 'Ingreso' : 'Gasto'; ?> 

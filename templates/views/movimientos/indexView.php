@@ -2,7 +2,42 @@
 require_once INCLUDES.'inc_header.php';
 ?>
      <!-- Fin inc:header.php -->     
+
+
   <div class="container maxwidthContainer">
+    <div class="row">
+    <div class="col-12">
+        <div class="card mb-3">
+            <div class="card-header"><h5>Opciones del sitema</h5></div>
+                <div class="card-body">
+                    <form action="" class="coatlex_save_options">
+                        <div class="form-group row">
+                        <div class="col-4">
+                            <label for="use_taxes">Calcular Impuestos</label>
+                                <select name="use_taxes" id="use_taxes" class="form-control">
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>                
+                                </select>
+                        </div>
+                        <div class="col-4">
+                            <label for="taxes">Impuestos</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                            <input type="text" name="taxes" id="taxes" class = "form-control">
+                        </div> 
+                        <div class="col-4">
+dfgdfgdfg
+
+                        </div>   
+                    </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+    </div>
         <div class="row d-flex justify-content-center";" >
             <div class="col-xl-8">
                 <div class="card">   
@@ -15,7 +50,7 @@ require_once INCLUDES.'inc_header.php';
                                     <div class="col-xl-6 "> 
                                         <input class = "form-control "  type="hidden" id="id" name="id"value="">
                                         <label class = "label-control" for="type">Tipo de movimiento:</label>
-                                        <select id="type" name="type" class=" form-select" required>
+                                        <select id="type" name="type" class="form-select d-block w-100" required>
                                         <option value="none">Selecciona...</option>
                                         <option value="expense">Gasto</option>
                                         <option value="income">Ingreso</option>
@@ -39,6 +74,7 @@ require_once INCLUDES.'inc_header.php';
                                     </div>
                                 </div>
                             </form>
+
                             <div class="coatlx_wrapper_update_form"><!-- AJAX fill--> </div>
                         </div>
                     </div>     

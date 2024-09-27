@@ -72,17 +72,17 @@
        
     }
 
-    function coatlx_update_movements(){
+    function coatlx_update_movement(){
 
         try {
-            $movements = new movementModel();
-            $id = $_POST['id'];
-            $movement = $movements->one();
-            if(!$movement){
+            $movement = new movementModel();
+            $movement->id = $_POST['id'];
+            $mov = $movement->one();
+            if(!$mov){
                 json_output(json_build(400 , null, 'No existe el movimiento'));
             }
 
-            $data = get_module('updateForm', $movement);
+            $data = get_module('updateForm', $mov);
             json_output(json_build(200 , $data));
            
            } catch (Exception $e) {
@@ -91,5 +91,28 @@
            //json_output(json_build(200));
        
     }
+
+   function coatlx_save_movement(){
+
+        try {
+         $mov = new movementModel();
+
+         $mov->id = $_POST['id'];
+         $mov->type = $_POST['type'];
+         $mov->description = $_POST['description'];
+         $mov->amount = (float)$_POST['amount'];
+         
+         if(!!$mov->update()){
+             json_output(json_build(400, null, 'Error al guardar los cambios'));
+         }
+         //Se guardó con éxito
+         json_output(json_build(200, $mov->one(), 'Cambio actualizado con éxito'));
+       
+ 
+        } catch (Exception $e) {
+         json_output(json_build(400 , null, $e->getMessage()));
+        }
+        //json_output(json_build(200));
+     }
 
  }

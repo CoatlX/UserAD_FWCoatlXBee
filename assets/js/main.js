@@ -102,17 +102,18 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
          });
     }
     //Update movimiento
-    function coatlx_update_movements(event){
+    $('body').on('dblclick','.coatlx_movement', coatlx_update_movement);
+    function coatlx_update_movement(event){
 
         var li   = $(this),
         id       = li.data('id'),
         hook     = 'coatlx_hook',
-        action   = 'get';
+        action   = 'get',
         add_form = $('.coatlx_add_movement'),
         wrapper_update_form = $('.coatlx_wrapper_update_form');
 
         $.ajax({
-            url     : 'ajax/coatlx_update_movements',
+            url     : 'ajax/coatlx_update_movement',
             type    : 'POST',
             dataType: 'json',
             cache   : false,
@@ -130,10 +131,10 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
                 toastr.error(respuesta.msg,'Valió!');
             }
          }).fail(function(err) {
-           // toastr.error('Hubo un error en la petición', 'Valiósss!')////////
-            wrapper.html('');
+            toastr.error('Hubo un error en la petición', 'Valiósss!')
+            wrapper_update_form.html('');
          }).always(function(){
-            wrapper.waitMe('hide');
+            wrapper_update_form.waitMe('hide');
          });
 
         
@@ -176,6 +177,70 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
          }).always(function(){
             wrapper.waitMe('hide');
          }); 
+    }
+    $('body').on('submit', '.coatlx_save_movement',coatlx_save_movement);
+    function coatlx_save_movement(event){
+
+        event.preventDefault();
+        //Jquery
+        var form    = $('.coatlx_save_movement'),
+        hook        = 'coatlx_hook',
+        action      = 'update',
+        data        = new FormData(form.get(0)),
+        type        = $('select[name="type"]', form).val(),
+        description = $('input[name="description"]', form).val(),
+        amount      = $('input[name="amount"]', form).val(),
+        add_form = $('.coatlx_add_movement');
+        data.append('hook', hook); //
+        data.append('action', action);
+
+       /* console.log(amount);
+        return; corta el código*/
+        //Validar que esté seleccionada una opción type
+        if(type === 'none'){
+           toastr.error('Selecciona un tipo de movimiento válido', '¡Upsss!');
+           return;     
+        }
+        //Validar la descripción
+        if(description === ''||description.length  < 5){
+            toastr.error('Selecciona una descripción válida', '¡Upsss!');
+            return;     
+         }
+         //Validar monto
+         if(amount === '' || amount <= 0){
+            toastr.error('Selecciona un monto válido', '¡Upsss!');
+            return;     
+         }
+
+         //Ajax
+         $.ajax({
+
+            url        : 'ajax/coatlx_save_movement',
+            type       : 'post',
+            dataType   : 'json',
+            contentType: false,
+            processData: false,
+            cache      : false,
+            data       : data,
+            beforeSend: function(){
+                form.waitMe();
+            }
+         }).done(function(res){
+            if(res.status===200){
+                toastr.success(res.msg, 'Yeah!');
+                form.trigger('reset');
+                form.remove();
+                coatlx_get_movements();
+                add_form.show();//Para cargar movimientos en tiempo real
+            }else{
+                toastr.error(res.msg,'Valió!');
+            }
+            
+         }).fail(function(err) {
+            toastr.error('Hubo un error en la petición', 'Valió!')
+         }).always(function(){
+            form.waitMe('hide');
+         })
     }
 });
 

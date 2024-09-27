@@ -15,13 +15,35 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-
-		"Print to console": {
-	 	"prefix": "-pecho",
+"PHP foreach": {
+		
+		"prefix": "-pfor",
 	 	"body": [
-	 		" <?php echo $1 ?>"
-	 	],
-	 	"description": "Log output to console"
+	 		"<?php foreach ($1): ?>",
+	 		"<?php endforeach; ?>"
+		],
+	 	"description": "PHP en html"
+	 },
+	 "PHP echo": {
+		
+		"prefix": "-pecho",
+	 	"body": [
+	 		"<?php echo $1; ?>"
+		],
+	 	"description": "PHP echo"
+	 },
+	 "PHP Clase": {
+		
+		"prefix": "-pClass",
+	 	"body": [
+	 		"<?php", 
+			"\tClass $1 {",
+			"\t\tfunction __constructor($2) \n\t\t{",
+			"\n\t\t}",
+			"\n\n\n}"
+		],
+	 	"description": "PHP Class con constructor"
 	 }
+
 	
 }

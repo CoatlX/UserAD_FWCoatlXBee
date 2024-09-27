@@ -93,7 +93,7 @@ function get_module($view, $data = [] ){
     }
     ob_start(); //Almacena en el buffer del sitio
     require_once $file_to_include;
-    $output = ob_get_clean(); //Todo el ouput de guarda como string y se regresa
+    $output = ob_get_clean(); //Todo el ouput se guarda como string y se regresa
     return $output;
 }
 
