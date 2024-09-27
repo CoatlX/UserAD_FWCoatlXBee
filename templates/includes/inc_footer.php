@@ -5,7 +5,7 @@
         <div class="col-6 text-center offset-xl-3">
             <div class="mt-5">
                 <p class="text-white">Desarrollado con <i class="fas fa-heart text-danger"></i> por 
-                <a href="http://bit.ly/udemy_joystick" class="text-white">Joystick - Gracias Bobby</a></p>
+                <a href="http://bit.ly/udemy_joystick" class="text-white ">Joystick - Gracias Bobby</a></p>
             </div>
         </div>
     </div>

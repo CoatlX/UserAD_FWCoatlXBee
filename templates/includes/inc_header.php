@@ -18,7 +18,7 @@
     <title><?php echo isset($d->title) ? $d->title.' - '.get_sitename() : 'Bienvenido - '
     .get_sitename() ?></title>
 </head>
-<body class="<?php echo isset($d->bg) && $d->bg === 'dark' ? 'bg-dark' : 'bg-light' ?>" 
+<body class="<?php echo isset($d->bg) && $d->bg === 'dark' ? 'bg-dark' : 'bg-white' ?>" 
 style="padding: 50px 0px;">
 
 <div class = "container maxwidthContainer " style="padding-bottom: 200px;">

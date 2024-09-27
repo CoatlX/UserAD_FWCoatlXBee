@@ -40,12 +40,12 @@ public function all()
 {
     $sql = 'SELECT *,
     (SELECT COUNT(id) FROM movements) AS total,
-    (SELECT SUM(amount) FROM movimientos WHERE type = "income") AS total_incomes,
-    (SELECT SUM(amount) FROM movimientos WHERE type = "expense") AS total_expenses
-    FROM movimientos
+    (SELECT SUM(amount) FROM movements WHERE type = "income") AS total_incomes,
+    (SELECT SUM(amount) FROM movements WHERE type = "expense") AS total_expenses
+    FROM movements
     ORDER BY id DESC';
     try {
-        return ($rows = parent::query($sql,'')) ? $rows : false;
+        return ($rows = parent::query($sql, null)) ? $rows : false;
     } catch (Exception $e) {
         throw $e;
     }
@@ -79,13 +79,13 @@ public function update(){
 
 public function delete(){
 
-    $sql = 'DELETE FROM movements WHERE id=:id LIMIT 1';
+    $sql = 'DELETE FROM movements WHERE id=: id LIMIT 1';
     $data =
     [
         'id' => $this->id
     ];
         try {
-            return ($rows = parent::query($sql)) ? $rows : false;
+            return ($rows = parent::query($sql, $data)) ? $rows : false;
         } catch (Exception $e) {
             throw $e;
         }

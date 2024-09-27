@@ -57,6 +57,7 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
             if(res.status===201){
                 toastr.success(res.msg, 'Yeah!');
                 form.trigger('reset');
+                coatlx_get_movements();//Para cargar movimientos en tiempo real
             }else{
                 toastr.error(res.msg,'Valió!');
             }
@@ -105,11 +106,44 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
         
     }
     //Delete movimiento
-    function coatlx_delete_movement(){
-        
+    $('body').on('click','.coatlx_delete_movement', coatlx_delete_movement);
+    function coatlx_delete_movement(event){
+
+        var btnBorrar = $(this),
+        id = btnBorrar.data('id')//Se crea del bloque que conforma la segunda columna de los movimientos del indexView
+        hook        = 'coatlx_hook',
+        action      = 'delete'
+        var wrapper = $('.coatlx_wrapper_movements');
+       /* console.log(id);
+        return;*/
+        if(!confirm('Seguro quieres borrar??')) return false;
+
+        $.ajax({
+            url     : 'ajax/coatlx_delete_movements',
+            type    : 'POST',
+            dataType: 'json',
+            cache   : false,
+            data    : {
+                hook, action, id
+            },
+            beforeSend: function(){
+                wrapper.waitMe();
+            }
+         }).done(function(respuesta){
+            if(respuesta.status === 200){
+                toastr-success('El movimiento se borró con éxito', 'XD');
+                coatlx_get_movements();
+            }else{
+                toastr.error(respuesta.msg,'Valió!');
+                wrapper.html('');
+            }
+         }).fail(function(err) {
+            toastr.error('Hubo un error en la petición', 'Valiósss!')////////
+            wrapper.html('');
+         }).always(function(){
+            wrapper.waitMe('hide');
+         }); 
     }
-
-
 });
 
 //Ejemplos rápidos de jquery

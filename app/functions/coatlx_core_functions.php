@@ -96,3 +96,8 @@ function get_module($view, $data = [] ){
     $output = ob_get_clean(); //Todo el ouput de guarda como string y se regresa
     return $output;
 }
+
+function money($amount, $symbol='$'){
+
+    return $symbol.' '.number_format($amount, 2,'.',',');
+}

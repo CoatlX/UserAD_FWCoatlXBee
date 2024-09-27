@@ -12,7 +12,7 @@ class movimientosController extends Controller{
             $data =
             [
                 'title' => 'Mis Movimientos',
-                'bg' => 'dark'
+                'bg' => 'dardk'
             ];
             View::render('index', $data);
          /*   print_r($data);
@@ -25,7 +25,7 @@ class movimientosController extends Controller{
         $data =
             [
                 //'title' => 'CoatlX',
-                'bg' => 'd'
+                'bg' => 'dark'
             ];
 
             View::render('gastos', $data);
