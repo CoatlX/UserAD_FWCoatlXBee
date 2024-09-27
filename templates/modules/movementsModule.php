@@ -1,11 +1,11 @@
-<h4 class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-muted">Movimientos</span>
                         <span class="badge bg-secondary"> <?php echo $d[0]->total; ?></span>
                     </h4>
                     <ul class="list-group mb-3">
                         <?php foreach ($d as $mov): ?>
                             <li class="list-group-item d-flex justify-content-between lh-condensed 
-                            <?php echo $mov->type === 'income' ? '' : 'bg-light';?>">
+                            <?php echo $mov->type === 'income' ? '' : 'bg-light';?> coatlx_movement" data-id="<?php echo $mov->id; ?>">
                             <div class="text-success">
                                 <h6 class="my-0 <?php echo $mov->type === 'income' ? 'text-success' : 'text-danger';?>"
                                 ><?php echo $mov->type === 'income' ? 'Ingreso' : 'Gasto'; ?> 
@@ -21,7 +21,7 @@
 
                     </ul>
                     <ul class="list-group mb-3">
-                        <li class="list-group-item d-flex-justify content-between">
+                        <li class="list-group-item d-flex-justify content-between ">
                             <span>Subtotal (MXN)</span>
                             <strong><?php echo money(($d[0]->total_incomes-$d[0]->total_expenses)*0.84);?></strong>
                         </li>

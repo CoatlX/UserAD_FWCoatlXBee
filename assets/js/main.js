@@ -102,7 +102,40 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
          });
     }
     //Update movimiento
-    function coatlx_update_movements(){
+    function coatlx_update_movements(event){
+
+        var li   = $(this),
+        id       = li.data('id'),
+        hook     = 'coatlx_hook',
+        action   = 'get';
+        add_form = $('.coatlx_add_movement'),
+        wrapper_update_form = $('.coatlx_wrapper_update_form');
+
+        $.ajax({
+            url     : 'ajax/coatlx_update_movements',
+            type    : 'POST',
+            dataType: 'json',
+            cache   : false,
+            data    : {
+                hook, action, id
+            },
+            beforeSend: function(){
+                wrapper_update_form.waitMe();
+            }
+         }).done(function(respuesta){
+            if(respuesta.status === 200){
+                wrapper_update_form.html(respuesta.data);
+                add_form.hide();
+            }else{
+                toastr.error(respuesta.msg,'Valió!');
+            }
+         }).fail(function(err) {
+           // toastr.error('Hubo un error en la petición', 'Valiósss!')////////
+            wrapper.html('');
+         }).always(function(){
+            wrapper.waitMe('hide');
+         });
+
         
     }
     //Delete movimiento
@@ -110,10 +143,10 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
     function coatlx_delete_movement(event){
 
         var btnBorrar = $(this),
-        id = btnBorrar.data('id')//Se crea del bloque que conforma la segunda columna de los movimientos del indexView
+        id = btnBorrar.data('id'),//Se crea del bloque que conforma la segunda columna de los movimientos del indexView
         hook        = 'coatlx_hook',
-        action      = 'delete'
-        var wrapper = $('.coatlx_wrapper_movements');
+        action      = 'delete',
+        wrapper = $('.coatlx_wrapper_movements');
        /* console.log(id);
         return;*/
         if(!confirm('Seguro quieres borrar??')) return false;
@@ -130,15 +163,15 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
                 wrapper.waitMe();
             }
          }).done(function(respuesta){
-            if(respuesta.status === 200){
-                toastr-success('El movimiento se borró con éxito', 'XD');
+            if(respuesta.status === 201){
+                toastr.success('El movimiento se borró con éxito', 'XD');
                 coatlx_get_movements();
             }else{
                 toastr.error(respuesta.msg,'Valió!');
                 wrapper.html('');
             }
          }).fail(function(err) {
-            toastr.error('Hubo un error en la petición', 'Valiósss!')////////
+            toastr.error('Hubo un error en la petición', 'Valió!')////////
             wrapper.html('');
          }).always(function(){
             wrapper.waitMe('hide');

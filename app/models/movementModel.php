@@ -52,7 +52,7 @@ public function all()
 }
 
 public function one(){
-    $sql = 'SELECT * FROM movements WHERE id=:id LIMIT 1';
+    $sql = 'SELECT * FROM movements WHERE id= :id LIMIT 1';
     try {
         return ($rows = parent::query($sql, ['id' => $this->id])) ? $rows[0] : false;
     } catch (Exception $e) {
@@ -79,13 +79,13 @@ public function update(){
 
 public function delete(){
 
-    $sql = 'DELETE FROM movements WHERE id=: id LIMIT 1';
+    $sql = 'DELETE FROM movements WHERE id= :id LIMIT 1';
     $data =
     [
         'id' => $this->id
     ];
         try {
-            return ($rows = parent::query($sql, $data)) ? $rows : false;
+            return (parent::query($sql, $data)) ? true : false;
         } catch (Exception $e) {
             throw $e;
         }

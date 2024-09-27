@@ -61,12 +61,32 @@
             $mov = new movementModel();
             $mov->id = $_POST['id'];
             if(!$mov->delete()){
-                json_output(json_build(400 , null, 'Hubo un error'));
+                json_output(json_build(400, null, 'Hubo un error'));
             }
-                json_output(json_build(200 , null, 'Borrado con éxito'));
+                json_output(json_build(201, $mov->one(), 'Borrado con éxito'));
            
            } catch (Exception $e) {
-                json_output(json_build(400 , null, $e->getMessage()));
+                json_output(json_build(400, null, $e->getMessage()));
+           }
+           //json_output(json_build(200));
+       
+    }
+
+    function coatlx_update_movements(){
+
+        try {
+            $movements = new movementModel();
+            $id = $_POST['id'];
+            $movement = $movements->one();
+            if(!$movement){
+                json_output(json_build(400 , null, 'No existe el movimiento'));
+            }
+
+            $data = get_module('updateForm', $movement);
+            json_output(json_build(200 , $data));
+           
+           } catch (Exception $e) {
+            json_output(json_build(400 , $e->getMessage()));
            }
            //json_output(json_build(200));
        

@@ -15,4 +15,13 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+
+		"Print to console": {
+	 	"prefix": "-pecho",
+	 	"body": [
+	 		" <?php echo $1 ?>"
+	 	],
+	 	"description": "Log output to console"
+	 }
+	
 }

@@ -40,7 +40,7 @@ class Db{
      * @param array $param
      * @return void
      */
-    public static function query($sql, $params = null){
+    public static function query($sql, $params){
 
         $db = new self();
         $link =$db->connect();//conexión a DB
