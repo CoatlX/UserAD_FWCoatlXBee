@@ -63,10 +63,10 @@
             if(!$mov->delete()){
                 json_output(json_build(400 , null, 'Hubo un error'));
             }
-            json_output(json_build(200 , null, 'Borrado con éxito'));
+                json_output(json_build(200 , null, 'Borrado con éxito'));
            
            } catch (Exception $e) {
-            json_output(json_build(400 , $e->getMessage()));
+                json_output(json_build(400 , null, $e->getMessage()));
            }
            //json_output(json_build(200));
        
