@@ -30,7 +30,7 @@ require_once INCLUDES.'inc_header.php';
                             <label for="use_taxes">Moneda</label>
                                 <select name="coin" id="coin" class="form-control">
                                     <?php foreach (get_coins() as $coin): ?>
-                                        <option value="<?php echo $coin; ?>"
+                                        <option class="text-dark" value="<?php echo $coin; ?>"
                                         <?php echo get_option('coin') === $coin ? 'selected' : ''; ?> </option> 
                                     <?php endforeach; ?>            
                                 </select>

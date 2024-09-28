@@ -105,11 +105,11 @@ function money($amount, $symbol='$'){
  function get_option($option){
     return optionModel::search($option);
 }
-/*function get_coins(){
+function get_coins(){
 
     return
     [
         'MXN',
         'USD'
     ];
-}*/
+}
