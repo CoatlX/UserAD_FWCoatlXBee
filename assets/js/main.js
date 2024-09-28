@@ -242,7 +242,46 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
             form.waitMe('hide');
          })
     }
+    function coatlx_save_options(event){
+        event.preventDefault();
+        //Jquery
+        var form    = $('.coatlx_save_options'),
+        hook        = 'coatlx_hook',
+        action      = 'post';
+        data.append('hook', hook); //
+        data.append('action', action);
+
+         //Ajax
+         $.ajax({
+
+            url        : 'ajax/coatlx_save_options',
+            type       : 'post',
+            dataType   : 'json',
+            contentType: false,
+            processData: false,
+            cache      : false,
+            data       : data,
+            beforeSend: function(){
+                form.waitMe();
+            }
+         }).done(function(res){
+            if(res.status===201 || res.status===200){
+                toastr.success(res.msg, 'Yeah!');
+                coatlx_get_movements();//Para cargar movimientos en tiempo real
+            }else{
+                toastr.error(res.msg,'Valió!');
+            }
+            
+         }).fail(function(err) {
+            toastr.error('Hubo un error en la petición', 'Valió!')
+         }).always(function(){
+            form.waitMe('hide');
+         })
+        }
 });
+
+
+
 
 //Ejemplos rápidos de jquery
 /*

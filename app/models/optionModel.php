@@ -75,11 +75,22 @@ class movementModel extends Model{
                 throw $e;
             }
         }
-        public static function searh($opcion)
-        {
+  public static function search($opcion)
+    {
             $self = new self();
             $self->opcion = $opcion;
             return $self->one();
 
-        }
     }
+    public static function save($opcion,$val)
+    {
+            $self = new self();
+            $self->opcion = $opcion;
+            $self->val =$val;
+        
+            if(!$self->one()){
+            return ($val->id = $self->add()) ? $self->id : false;
+        }
+        return $self->update();
+    }
+}

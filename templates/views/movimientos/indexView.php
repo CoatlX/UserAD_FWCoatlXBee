@@ -23,16 +23,23 @@ require_once INCLUDES.'inc_header.php';
                             <label for="taxes">Impuestos</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">%</span>
+                                    <span class="input-group-text "> %</span>
                                 </div>
+                                <input type="text" name="taxes" id="taxes" class = "w-100 form-control">
                             </div>
-                            <input type="text" name="taxes" id="taxes" class = "form-control">
+                            
+<!--  <input type="text" name="taxes" id="taxes" class = "form-control">-->
                         </div> 
                         <div class="col-4">
-dfgdfgdfg
-
-                        </div>   
+                            <label for="use_taxes">Divisa</label>
+                                <select name="divisa" id="divisa" class="form-control">
+                                    <option value="none">Selecciona divisa...</option>
+                                    <option value="mxn">MXN</option>
+                                    <option value="usd">USD</option>                
+                                </select>
+                        </div>
                     </div>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                     </form>
                 </div>
         </div>
