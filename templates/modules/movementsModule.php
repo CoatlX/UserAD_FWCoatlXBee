@@ -1,9 +1,11 @@
+        
         <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-muted">Movimientos</span>
-                        <span class="badge bg-secondary"> <?php echo $d[0]->total; ?></span>
+                        <span class="badge bg-secondary"> <?php echo $d->cal->total_movements; ?></span>
                     </h4>
                     <ul class="list-group mb-3">
-                        <?php foreach ($d as $mov): ?>
+                         <?php if ($d->movements): ?>
+                            <?php foreach ($d->movements as $mov): ?>
                             <li class="coatlx_movement list-group-item d-flex justify-content-between lh-condensed 
                             <?php echo $mov->type === 'income' ? '' : 'bg-light';?> " 
                             data-id="<?php echo $mov->id;?>">
@@ -19,21 +21,26 @@
                                 <?php echo money($mov->amount); ?></span>
                                 </li>
                                 <?php endforeach; ?>
-
+                        <?php else:  ?>
+                            No hay movimientos en este mes
+                        <?php endif; ?>
                     </ul>
                     <ul class="list-group mb-3">
                         <li class="list-group-item d-flex-justify content-between ">
-                            <span>Subtotal (MXN)</span>
-                            <strong><?php echo money(($d[0]->total_incomes-$d[0]->total_expenses)*0.84);?></strong>
+                            <span>Subtotal (<?php echo get_option('coin'); ?>)</span>
+                            <strong><?php echo money($d->cal->subtotal);?></strong>
                         </li>
+                        <?php if (get_option('use_taxes') ==='Si'): ?>
                         <li class="list-group-item d-flex-justify content-between">
-                            <span>Impuestos (16%)</span>
-                            <strong><?php echo money(($d[0]->total_incomes -$d[0]->total_expenses)*0.16);?></strong>
+                            <span>Impuestos (<?php echo get_option('taxes'); ?>)%</span>
+                            <strong><?php echo money($d->cal->taxes);?></strong>
                         </li>
+                        <?php endif; ?>
+                        
                         <li class="list-group-item d-flex-justify content-between">
-                            <span>Total (MXN)</span>
-                            <strong><?php echo money($d[0]->total_incomes -$d[0]->total_expenses);?></strong>
+                            <span>Total (<?php echo get_option('coin'); ?>)</span>
+                            <strong><?php echo money($d->cal->total);?></strong>
                         </li>
                     </ul>
 
-                   
+                    

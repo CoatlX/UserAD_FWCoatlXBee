@@ -43,7 +43,29 @@
 			"\n\n\n}"
 		],
 	 	"description": "PHP Class con constructor"
+	 },
+
+	 "Comentario HTML": {
+		
+		"prefix": "-sHTMLComent",
+	 	"body": [
+	 		"<!--  $1", 
+			"\t\t-->"
+			
+		],
+	 	"description": "Comentario para HTML"
+	 },
+	 "Comentario HTML": {
+		
+		"prefix": "-pif",
+	 	"body": [
+	 		"<?php if ( $1 ): ?>", 
+			"<?php else: $2 ?>", 
+			"<?php endif; ?>", 
+		],
+	 	"description": "Comentario para HTML"
 	 }
+
 
 	
 }

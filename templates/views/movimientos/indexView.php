@@ -1,5 +1,6 @@
 <?php 
 require_once INCLUDES.'inc_header.php';
+require_once FUNCTIONS.'coatlx_custom_functions.php'
 ?>
      <!-- Fin inc:header.php -->     
   <div class="container maxwidthContainer">
@@ -13,8 +14,10 @@ require_once INCLUDES.'inc_header.php';
                         <div class="col-4">
                             <label for="use_taxes">Calcular Impuestos</label>
                                 <select name="use_taxes" id="use_taxes" class="form-control">
-                                    <option value="Si">Si</option>
-                                    <option value="No">No</option>                
+                                    <?php foreach (['Si','No'] as $opt): ?>
+                                        <option value="<?php echo $opt; ?>" <?php echo get_option('use_taxes') === $opt ? 'selected' : ''; ?>>
+                                        <?php echo $opt; ?></option>
+                                    <?php endforeach; ?>               
                                 </select>
                         </div>
                         <div class="col-4">
@@ -23,15 +26,19 @@ require_once INCLUDES.'inc_header.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text "> %</span>
                                 </div>
-                                <input type="text" name="taxes" id="taxes" class = "w-100 form-control">
+                                <input type="text" name="taxes" id="taxes" class = "w-100 form-control"
+                                value="<?php echo get_option('taxes'); ?>">
                             </div>
                         </div> 
                         <div class="col-4">
                             <label for="use_taxes">Moneda</label>
                                 <select name="coin" id="coin" class="form-control">
                                     <?php foreach (get_coins() as $coin): ?>
-                                        <option class="text-dark" value="<?php echo $coin; ?>"
-                                        <?php echo get_option('coin') === $coin ? 'selected' : ''; ?> </option> 
+                                        
+                                        <option value="<?php echo $coin; ?>"
+                                        <?php echo get_option('coin') === $coin ? 'selected' : '' ?>>
+                                        <?php echo $coin; ?>
+                                    </option> 
                                     <?php endforeach; ?>            
                                 </select>
                         </div>

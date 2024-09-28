@@ -91,4 +91,29 @@ public function delete(){
             throw $e;
         }
     }
+
+    public function all_by_date($date = null)
+{
+    $date = $date === null ? now() : $date;
+    $sql = 'SELECT *,
+    (SELECT COUNT(id) FROM movements  WHERE 
+    MONTH (created_at) = MONTH (:current_date) AND 
+    YEAR(created_at) = YEAR(:current_date))  AS total,
+    (SELECT SUM(amount) FROM movements WHERE 
+    type = "income" AND
+    MONTH (created_at) = MONTH (:current_date) AND 
+    YEAR(created_at) = YEAR(:current_date)) AS total_incomes,
+    (SELECT SUM(amount) FROM movements WHERE 
+    type = "expense" AND
+    MONTH (created_at) = MONTH (:current_date) AND 
+    YEAR(created_at) = YEAR( :current_date)) AS total_expenses
+    FROM movements
+    WHERE MONTH (created_at) = MONTH (:current_date) AND YEAR(created_at) = YEAR( :current_date)
+    ORDER BY id DESC';
+    try {
+        return ($rows = parent::query($sql, ['current_date'=> $date])) ? $rows : false;
+    } catch (Exception $e) {
+        throw $e;
+    }
+}
 }

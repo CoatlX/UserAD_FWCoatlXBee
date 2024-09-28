@@ -45,7 +45,7 @@ class optionModel extends Model{
     public function one(){
         $sql = 'SELECT * FROM options WHERE opcion= :opcion LIMIT 1';
         try {
-            return ($rows = parent::query($sql,['opcion'=>$this->opcion])) ? $rows[0]['val'] : false;
+            return ($rows = parent::query($sql,['opcion'=>$this->opcion])) ? $rows[0] : false;
         } catch (Exception $e) {
             throw $e;
         }
@@ -79,7 +79,7 @@ class optionModel extends Model{
     {
             $self = new self();
             $self->opcion = $opcion;
-            return $self->one();
+            return ($res = $self->one()) ? $res['val'] : false;
 
     }
     public static function save($opcion, $val)
@@ -88,7 +88,7 @@ class optionModel extends Model{
             $self->opcion = $opcion;
             $self->val    = $val;
         
-            if(!$self->one()){
+            if(!$opcion = $self->one()){
             return ($self->id = $self->add()) ? $self->id : false;
         }
         return $self->update();
