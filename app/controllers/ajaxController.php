@@ -114,5 +114,27 @@
         }
         //json_output(json_build(200));
      }
+     function coatlx_save_options(){
+            $options = 
+            [
+            'use_taxes' => $_POST['use_taxes'],
+            'taxes' => (float)$_POST['taxes'],
+            'coin' => $_POST['coin']
+            ];
+        foreach ($options as $k => $option){
+        try {
 
- }
+         if($id = optionModel::save($k, $option)){
+             json_output(json_build(400, null, sprintf('Error al guardar la opción:  %s', $k)));
+         }
+         //Se guardó con éxito
+         
+        } catch (Exception $e) {
+         json_output(json_build(400 , null, $e->getMessage()));
+        }    
+        }    
+        json_output(json_build(200, null, 'Opciones actualizadas con éxito'));
+        //json_output(json_build(200));
+     }
+ 
+    }

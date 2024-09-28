@@ -242,12 +242,15 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
             form.waitMe('hide');
          })
     }
+    
+    $('.coatlx_save_options').on('submit', coatlx_save_options);
     function coatlx_save_options(event){
         event.preventDefault();
         //Jquery
         var form    = $('.coatlx_save_options'),
+        data = new FormData(form.get(0)),
         hook        = 'coatlx_hook',
-        action      = 'post';
+        action      = 'add';
         data.append('hook', hook); //
         data.append('action', action);
 
@@ -271,7 +274,6 @@ $(document).ready(function(){//INdica que si el documento está listo, se ejecut
             }else{
                 toastr.error(res.msg,'Valió!');
             }
-            
          }).fail(function(err) {
             toastr.error('Hubo un error en la petición', 'Valió!')
          }).always(function(){

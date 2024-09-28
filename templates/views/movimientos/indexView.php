@@ -2,15 +2,13 @@
 require_once INCLUDES.'inc_header.php';
 ?>
      <!-- Fin inc:header.php -->     
-
-
   <div class="container maxwidthContainer">
     <div class="row">
     <div class="col-12">
         <div class="card mb-3">
             <div class="card-header"><h5>Opciones del sitema</h5></div>
                 <div class="card-body">
-                    <form action="" class="coatlex_save_options">
+                    <form class="coatlx_save_options">
                         <div class="form-group row">
                         <div class="col-4">
                             <label for="use_taxes">Calcular Impuestos</label>
@@ -27,15 +25,14 @@ require_once INCLUDES.'inc_header.php';
                                 </div>
                                 <input type="text" name="taxes" id="taxes" class = "w-100 form-control">
                             </div>
-                            
-<!--  <input type="text" name="taxes" id="taxes" class = "form-control">-->
                         </div> 
                         <div class="col-4">
-                            <label for="use_taxes">Divisa</label>
-                                <select name="divisa" id="divisa" class="form-control">
-                                    <option value="none">Selecciona divisa...</option>
-                                    <option value="mxn">MXN</option>
-                                    <option value="usd">USD</option>                
+                            <label for="use_taxes">Moneda</label>
+                                <select name="coin" id="coin" class="form-control">
+                                    <?php foreach (get_coins() as $coin): ?>
+                                        <option value="<?php echo $coin; ?>"
+                                        <?php echo get_option('coin') === $coin ? 'selected' : ''; ?> </option> 
+                                    <?php endforeach; ?>            
                                 </select>
                         </div>
                     </div>

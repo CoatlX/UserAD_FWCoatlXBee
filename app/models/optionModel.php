@@ -1,6 +1,6 @@
 <?php 
 
-class movementModel extends Model{
+class optionModel extends Model{
 
     public $id;
     public $opcion;
@@ -16,10 +16,10 @@ class movementModel extends Model{
      */
     public function add(){
     
-        $sql = 'INSERT INTO options (id, opcion, val, created_at)
-        VALUES (:id, :opcion, :val, :created_at)';
+        $sql = 'INSERT INTO options (opcion, val, created_at)
+        VALUES ( :opcion, :val, :created_at)';
         $data =
-        [
+        [   
             'opcion'     => $this->opcion,
             'val'        => $this->val,
             'created_at' => now()
@@ -43,7 +43,7 @@ class movementModel extends Model{
     }
 
     public function one(){
-        $sql = 'SELECT v* FROM options WHERE opcion=:opcion LIMIT 1';
+        $sql = 'SELECT * FROM options WHERE opcion= :opcion LIMIT 1';
         try {
             return ($rows = parent::query($sql,['opcion'=>$this->opcion])) ? $rows[0]['val'] : false;
         } catch (Exception $e) {
@@ -52,11 +52,11 @@ class movementModel extends Model{
     }
 
     public function update(){
-        $sql = 'UPDATE options SET val=:val WHERE opcion=:opcion';
+        $sql = 'UPDATE options SET val= :val WHERE opcion= :opcion';
         $data =
         [
             'opcion'     => $this->opcion,
-            'val'        => $this->val,
+            'val'        => $this->val
         ];  
         try {
         return $this->id = parent::query($sql, $data) ? $this->id : false;
@@ -67,7 +67,7 @@ class movementModel extends Model{
 
     public function delete(){
 
-        $sql = 'DELETE FROM options WHERE opcion=:opcion LIMIT 1';
+        $sql = 'DELETE FROM options WHERE opcion= :opcion LIMIT 1';
 
             try {
                 return ($rows = parent::query($sql ,['opcion' => $this->opcion])) ? true : false;
@@ -82,14 +82,14 @@ class movementModel extends Model{
             return $self->one();
 
     }
-    public static function save($opcion,$val)
+    public static function save($opcion, $val)
     {
-            $self = new self();
+            $self         = new self();
             $self->opcion = $opcion;
-            $self->val =$val;
+            $self->val    = $val;
         
             if(!$self->one()){
-            return ($val->id = $self->add()) ? $self->id : false;
+            return ($self->id = $self->add()) ? $self->id : false;
         }
         return $self->update();
     }

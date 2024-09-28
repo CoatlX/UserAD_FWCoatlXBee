@@ -44,12 +44,12 @@ class Db{
 
         $db = new self();
         $link =$db->connect();//conexión a DB
-        $link->beginTransaction(); //Puede hacer un rollback si sucede un error
+        $link->beginTransaction(); 
         $query = $link->prepare($sql);
 
             //Esta condición no manda errores en el query, sintaxis, no hay DB etc.
         if(!$query->execute($params)){
-            $link->rollBack();
+            $link->rollBack();//Puede hacer un rollback si sucede un error
             $error =  $query->errorInfo();//Regresa un array con el error
             //Index 0 Tipo de error
             //Index 1 código de error
