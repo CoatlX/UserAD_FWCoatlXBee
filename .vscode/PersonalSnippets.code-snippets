@@ -47,7 +47,7 @@
 
 	 "Comentario HTML": {
 		
-		"prefix": "-sHTMLComent",
+		"prefix": "-cHTMLComent",
 	 	"body": [
 	 		"<!--  $1", 
 			"\t\t-->"
@@ -55,7 +55,7 @@
 		],
 	 	"description": "Comentario para HTML"
 	 },
-	 "Comentario HTML": {
+	 "If PHP": {
 		
 		"prefix": "-pif",
 	 	"body": [
@@ -63,7 +63,7 @@
 			"<?php else: $2 ?>", 
 			"<?php endif; ?>", 
 		],
-	 	"description": "Comentario para HTML"
+	 	"description": "If PHP para HTML"
 	 }
 
 

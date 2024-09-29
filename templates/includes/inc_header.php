@@ -29,6 +29,8 @@ style="padding: 50px 0px;">
                 <h2 class="mt-1 mb-3 <?php echo isset($d->bg) && $d->bg === 'dark' ? 'text-white' : 'text-dark' ?>" style =  ><span class="text-danger">CoatlX</span> Framework </h2>
             </div>
         </div>
+        <!--  coatlex@gmail.com
+                -->
 </div>
 
        
